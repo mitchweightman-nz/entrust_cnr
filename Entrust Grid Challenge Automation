@@ -1,0 +1,242 @@
+;; Entrust Grid Challenge Automation
+;;
+;; Copyright (c) 2016, Brian Detweiler
+;; All rights reserved.
+
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+
+;; 1. Redistributions of source code must retain the above copyright notice, this
+;;      list of conditions and the following disclaimer.
+;; 2. Redistributions in binary form must reproduce the above copyright notice,
+;;      this list of conditions and the following disclaimer in the documentation
+;;      and/or other materials provided with the distribution.
+
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+;; ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+;; WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+;; DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+;; ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+;; (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+;; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+;; ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+;; (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+;; SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+;; The views and conclusions contained in the software and documentation are those
+;; of the authors and should not be interpreted as representing official policies,
+;; either expressed or implied, of the FreeBSD Project.
+
+;; Use ctrl-alt-n to run the script - Change this to whatever you like
+^!n::readUNMCPage()
+
+
+
+readUNMCPage() {
+
+    Send ^a
+    Sleep 500
+    Send ^c
+
+    Loop, parse, clipboard, `n, `r
+    {
+        i := A_Index
+        haystack := A_LoopField
+        
+        ;; Look for a string like [B5] [I5] [I2]and pull out those individual values
+        needleRegex := "O)\[([A-Z0-9]{2})\] \[([A-Z0-9]{2})\] \[([A-Z0-9]{2})\]"
+
+        FoundPos := RegExMatch(haystack, needleRegex, Match)
+        if (FoundPos > 0)
+        {
+            ;; Matches
+            first := Match.1
+            second := Match.2
+            third := Match.3
+            fourth := Match.4
+
+            ;; Grid results from my personal grid
+            newFirst := mapGridChallenge(first)
+            newSecond := mapGridChallenge(second)
+            newThird := mapGridChallenge(third)
+            newFourth := mapGridChallenge(fourth)
+
+            ;; MsgBox, 0, Hello - %newFirst% - %newSecond% - %newThird% - %newFourth% ;; - %myMatch.Value(3)% - %myMatch.Value(4)%
+            Send {tab}
+            Send %newFirst%%newSecond%%newThird%%newFourth%
+            Send {enter}
+        }
+        
+        ;; IfMsgBox, No, break
+    }
+}
+
+;; This will be specific to your grid card (and I made all this data up, so it's not from a real card).
+mapGridChallenge(foo) { ; ;
+    A 's
+        if (foo == "A1") {
+            return "?"
+        }
+        if (foo == "A2") {
+            return "?"
+        }
+        if (foo == "A3") {
+            return "?"
+        }
+        if (foo == "A4") {
+            return "?"
+        }
+        if (foo == "A5") {
+            return "?"
+        }
+
+        ;; B' s
+    if (foo == "B1") {
+        return "?"
+    }
+    if (foo == "B2") {
+        return "?"
+    }
+    if (foo == "B3") {
+        return "?"
+    }
+    if (foo == "B4") {
+        return "?"
+    }
+    if (foo == "B5") {
+        return "?"
+    }; ;
+    C 's
+        if (foo == "C1") {
+            return "?"
+        }
+        if (foo == "C2") {
+            return "?"
+        }
+        if (foo == "C3") {
+            return "?"
+        }
+        if (foo == "C4") {
+            return "?"
+        }
+        if (foo == "C5") {
+            return "?"
+        }
+
+
+        ;; D' s
+    if (foo == "D1") {
+        return "?"
+    }
+    if (foo == "D2") {
+        return "?"
+    }
+    if (foo == "D3") {
+        return "?"
+    }
+    if (foo == "D4") {
+        return "?"
+    }
+    if (foo == "D5") {
+        return "?"
+    }; ;
+    E 's
+        if (foo == "E1") {
+            return "?"
+        }
+        if (foo == "E2") {
+            return "?"
+        }
+        if (foo == "E3") {
+            return "?"
+        }
+        if (foo == "E4") {
+            return "?"
+        }
+        if (foo == "E5") {
+            return "?"
+        }
+
+        ;; F' s
+    if (foo == "F1") {
+        return "?"
+    }
+    if (foo == "F2") {
+        return "?"
+    }
+    if (foo == "F3") {
+        return "?"
+    }
+    if (foo == "F4") {
+        return "?"
+    }
+    if (foo == "F5") {
+        return "?"
+    }; ;
+    G 's
+        if (foo == "G1") {
+            return "?"
+        }
+        if (foo == "G2") {
+            return "?"
+        }
+        if (foo == "G3") {
+            return "?"
+        }
+        if (foo == "G4") {
+            return "?"
+        }
+        if (foo == "G5") {
+            return "?"
+        }
+
+        ;; H' s
+    if (foo == "H1") {
+        return "?"
+    }
+    if (foo == "H2") {
+        return "?"
+    }
+    if (foo == "H3") {
+        return "?"
+    }
+    if (foo == "H4") {
+        return "?"
+    }
+    if (foo == "H5") {
+        return "?"
+    }; ;
+    I 's
+        if (foo == "I1") {
+            return "?"
+        }
+        if (foo == "I2") {
+            return "?"
+        }
+        if (foo == "I3") {
+            return "?"
+        }
+        if (foo == "I4") {
+            return "?"
+        }
+        if (foo == "I5") {
+            return "?"
+        }
+
+        ;; J' s
+    if (foo == "J1") {
+        return "?"
+    }
+    if (foo == "J2") {
+        return "?"
+    }
+    if (foo == "J3") {
+        return "?"
+    }
+    if (foo == "J4") {
+        return "?"
+    }
+    if (foo == "J5") {
+        return "?"
+    }
+}
